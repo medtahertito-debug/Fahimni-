@@ -54,12 +54,17 @@ const App: React.FC = () => {
 
     // Check for API key
     const checkApiKey = async () => {
+      const envKey = process.env.GEMINI_API_KEY || process.env.API_KEY;
+      if (envKey && envKey !== 'undefined') {
+        setHasApiKey(true);
+        return;
+      }
+
       if (window.aistudio) {
         const hasKey = await window.aistudio.hasSelectedApiKey();
         setHasApiKey(hasKey);
       } else {
-        const apiKey = process.env.GEMINI_API_KEY || process.env.API_KEY;
-        setHasApiKey(!!apiKey && apiKey !== 'undefined');
+        setHasApiKey(false);
       }
     };
     checkApiKey();
@@ -706,28 +711,6 @@ const App: React.FC = () => {
   return (
     <Layout step={state.currentStep} onBack={state.currentStep === AppStep.PDF_VIEW ? undefined : goBack} title={getStepTitle()}>
       <div className="animate-in fade-in duration-700">
-        {!hasApiKey && (
-          <div className="max-w-2xl mx-auto mb-6 animate-in fade-in slide-in-from-top duration-500">
-            <div className="bg-amber-50 border-2 border-amber-200 p-6 rounded-3xl flex flex-col sm:flex-row items-center gap-4 shadow-sm">
-              <div className="bg-amber-100 p-3 rounded-2xl">
-                <svg className="w-8 h-8 text-amber-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
-                </svg>
-              </div>
-              <div className="flex-1 text-center sm:text-left">
-                <h4 className="font-bold text-amber-900 text-lg">{state.language === 'ar' ? 'مفتاح API مفقود' : 'API Key Missing'}</h4>
-                <p className="text-amber-700">{state.language === 'ar' ? 'يرجى اختيار مفتاح API لتفعيل ميزات الذكاء الاصطناعي.' : 'Please select an API key to enable AI features.'}</p>
-              </div>
-              <button 
-                onClick={handleOpenKeySelection}
-                className="px-6 py-3 bg-amber-600 text-white rounded-2xl font-bold hover:bg-amber-700 transition-all shadow-md active:scale-95"
-              >
-                {state.language === 'ar' ? 'إعداد المفتاح' : 'Setup Key'}
-              </button>
-            </div>
-          </div>
-        )}
-
         {error && (
           <div className="max-w-2xl mx-auto mb-6 animate-in fade-in slide-in-from-top duration-500">
             <div className="bg-red-50 border-2 border-red-100 p-6 rounded-3xl flex items-center gap-4 shadow-sm">
