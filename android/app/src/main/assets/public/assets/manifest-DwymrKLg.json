@@ -1,0 +1,32 @@
+
+{
+  "short_name": "فهمني",
+  "name": "فهمني - منصة الطالب العربي",
+  "icons": [
+    {
+      "src": "https://cdn-icons-png.flaticon.com/512/3429/3429153.png",
+      "sizes": "64x64 32x32 24x24 16x16",
+      "type": "image/png"
+    },
+    {
+      "src": "https://cdn-icons-png.flaticon.com/512/3429/3429153.png",
+      "type": "image/png",
+      "sizes": "192x192",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "https://cdn-icons-png.flaticon.com/512/3429/3429153.png",
+      "type": "image/png",
+      "sizes": "512x512",
+      "purpose": "any maskable"
+    }
+  ],
+  "start_url": ".",
+  "display": "fullscreen",
+  "orientation": "portrait",
+  "theme_color": "#1e3a8a",
+  "background_color": "#f8fafc",
+  "dir": "rtl",
+  "lang": "ar",
+  "categories": ["education", "books"]
+}

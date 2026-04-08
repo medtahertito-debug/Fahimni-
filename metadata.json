@@ -1,0 +1,16 @@
+{
+  "name": "فهمني - com.fahmini.education",
+  "description": "تطبيق أندرويد رسمي لطلاب الثانوي، يوفر وصولاً مباشراً لملفات PDF الوزارية والامتحانات الرسمية.",
+  "package_name": "com.fahmini.education",
+  "version": "1.0.0",
+  "requestFramePermissions": [
+    "camera",
+    "microphone",
+    "geolocation"
+  ],
+  "android_permissions": [
+    "android.permission.INTERNET",
+    "android.permission.READ_EXTERNAL_STORAGE",
+    "android.permission.WRITE_EXTERNAL_STORAGE"
+  ]
+}
