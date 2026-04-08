@@ -100,9 +100,13 @@ const App: React.FC = () => {
 
   const handleError = (err: any) => {
     const msg = typeof err === 'string' ? err : (err?.message || JSON.stringify(err));
-    if (msg.includes('429') || msg.includes('RESOURCE_EXHAUSTED')) {
+    const lowerMsg = msg.toLowerCase();
+    
+    if (lowerMsg.includes('429') || lowerMsg.includes('resource_exhausted')) {
       setError(t.error429);
-    } else if (msg.includes('500') || msg.includes('Rpc failed') || msg.includes('xhr error') || msg.includes('fetch') || msg.includes('Failed to fetch')) {
+    } else if (lowerMsg.includes('api key') || lowerMsg.includes('api_key') || lowerMsg.includes('unauthorized') || lowerMsg.includes('401') || lowerMsg.includes('403')) {
+      setError(t.errorApiKey);
+    } else if (lowerMsg.includes('500') || lowerMsg.includes('rpc failed') || lowerMsg.includes('xhr error') || lowerMsg.includes('fetch') || lowerMsg.includes('failed to fetch')) {
       setError(t.error500);
     } else {
       setError(t.errorUnexpected);

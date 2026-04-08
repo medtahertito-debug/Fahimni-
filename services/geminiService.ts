@@ -12,6 +12,7 @@ const getAI = () => {
 
   if (!apiKey) {
     console.error("GEMINI_API_KEY is missing or empty. Please ensure it is set in your environment variables or select a key via the settings.");
+    throw new Error("API Key is missing");
   } else {
     // Only log the first few characters for security
     console.log("GEMINI_API_KEY found, prefix:", apiKey.substring(0, 4) + "...");
